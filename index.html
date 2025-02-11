@@ -8,6 +8,13 @@
         body {
             text-align: center;
             font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #fce4ec;
         }
         #mensaje {
             font-size: 24px;
@@ -27,7 +34,7 @@
 </head>
 <body>
     <h1 id="mensaje">¿Me amas?</h1>
-    <img id="imagen" src="image.png" alt="Carta Cerrada">
+    <img id="imagen" src="./image.png" alt="Carta Cerrada">
     <br>
     <button class="boton" onclick="respuesta('no')">No</button>
     <button class="boton" onclick="respuesta('si')">Sí</button>
@@ -42,7 +49,7 @@
                 document.getElementById("mensaje").innerText = respuestas[Math.floor(Math.random() * respuestas.length)];
             } else {
                 document.getElementById("mensaje").innerText = "Yo también te amo, princesa <3";
-                document.getElementById("imagen").src = "open_letter.png"; // Imagen de carta abierta
+                document.getElementById("imagen").src = "./open_letter.png"; // Imagen de carta abierta
                 document.querySelectorAll(".boton").forEach(boton => boton.remove());
             }
         }
