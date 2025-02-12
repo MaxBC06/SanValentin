@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¿Me amas?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         body {
             text-align: center;
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -19,7 +20,7 @@
         }
         #mensaje {
             font-size: 28px;
-            font-weight: bold;
+            font-weight: 600;
             margin-bottom: 20px;
         }
         #respuesta-no {
@@ -30,7 +31,7 @@
         }
         .botones {
             display: flex;
-            gap: 20px;
+            gap: 50px;
             margin-top: 20px;
         }
         .boton {
@@ -49,10 +50,9 @@
             background-color: white;
             color: #ff4081;
             border: 2px solid #ff4081;
-            position: relative;
         }
 
-        /* Corazones en las esquinas con movimiento */
+        /* Corazones en las esquinas con movimiento suave */
         .corazon {
             position: absolute;
             width: 50px;
@@ -68,6 +68,22 @@
             0% { transform: translateX(0); }
             100% { transform: translateX(20px); }
         }
+
+        /* Estilo para las imágenes */
+        .imagen-lateral {
+            position: absolute;
+            width: 150px;
+            height: auto;
+            display: none;
+            animation: sacudir 0.8s infinite alternate ease-in-out;
+        }
+        .imagen-izquierda { left: 10%; top: 50%; transform: translateY(-50%); }
+        .imagen-derecha { right: 10%; top: 50%; transform: translateY(-50%); }
+
+        @keyframes sacudir {
+            0% { transform: translateY(-2px); }
+            100% { transform: translateY(2px); }
+        }
     </style>
 </head>
 <body>
@@ -75,7 +91,7 @@
     <p id="respuesta-no"></p>
     <img id="imagen" src="./image.png" alt="Carta Cerrada">
     <div class="botones">
-        <button class="boton boton-no" onclick="respuesta('no')" id="botonNo">No</button>
+        <button class="boton boton-no" onclick="respuesta('no')">No</button>
         <button class="boton boton-si" onclick="respuesta('si')">Sí</button>
     </div>
 
@@ -85,6 +101,10 @@
     <img class="corazon corazon3" src="./corazon.png" alt="❤️">
     <img class="corazon corazon4" src="./corazon.png" alt="❤️">
 
+    <!-- Imágenes laterales -->
+    <img class="imagen-lateral imagen-izquierda" src="./pareja1.png" alt="Tu imagen">
+    <img class="imagen-lateral imagen-derecha" src="./pareja2.png" alt="Imagen de tu pareja">
+
     <script>
         function respuesta(opcion) {
             if (opcion === 'no') {
@@ -93,23 +113,13 @@
                     "Piénsalo bien", "Respuesta incorrecta"
                 ];
                 document.getElementById("respuesta-no").innerText = respuestas[Math.floor(Math.random() * respuestas.length)];
-                
-                // Mover el botón "No" a una nueva posición aleatoria
-                const botonNo = document.getElementById("botonNo");
-                const maxX = window.innerWidth - botonNo.offsetWidth - 20;
-                const maxY = window.innerHeight - botonNo.offsetHeight - 20;
-                const randomX = Math.random() * maxX;
-                const randomY = Math.random() * maxY;
-                botonNo.style.transform = `translate(${randomX}px, ${randomY}px)`;
             } else {
                 document.getElementById("mensaje").innerText = "Yo también te amo, princesa <3";
                 document.getElementById("imagen").src = "./open_letter.png";
                 document.querySelectorAll(".boton").forEach(boton => boton.remove());
-                document.querySelectorAll(".corazon").forEach(corazon => corazon.remove());
-                document.getElementById("respuesta-no").innerText = "";
+                document.querySelectorAll(".imagen-lateral").forEach(img => img.style.display = 'block');
             }
         }
     </script>
 </body>
 </html>
-
