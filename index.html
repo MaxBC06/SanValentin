@@ -64,17 +64,17 @@
             height: auto;
             animation: mover 3s infinite alternate ease-in-out;
         }
-        .corazon1 { top: 20px; left: 20px; }
-        .corazon2 { top: 20px; right: 20px; }
-        .corazon3 { bottom: 20px; left: 20px; }
-        .corazon4 { bottom: 20px; right: 20px; }
+        .corazon1 { top: 30px; left: 30px; }
+        .corazon2 { top: 30px; right: 30px; }
+        .corazon3 { bottom: 30px; left: 30px; }
+        .corazon4 { bottom: 30px; right: 30px; }
 
         @keyframes mover {
             0% { transform: translateX(0); }
             100% { transform: translateX(10px); }
         }
 
-        /* Imágenes laterales (visibles solo al presionar "Sí") */
+        /* Imágenes laterales más centradas (visibles solo al presionar "Sí") */
         .imagen-lateral {
             position: absolute;
             width: 240px;
@@ -82,8 +82,8 @@
             display: none;
             animation: sacudir 0.8s infinite alternate ease-in-out;
         }
-        .imagen-izquierda { left: 5%; top: 50%; transform: translateY(-50%); }
-        .imagen-derecha { right: 5%; top: 50%; transform: translateY(-50%); }
+        .imagen-izquierda { left: 15%; top: 50%; transform: translate(-50%, -50%); }
+        .imagen-derecha { right: 15%; top: 50%; transform: translate(50%, -50%); }
 
         @keyframes sacudir {
             0% { transform: translateY(-2px); }
@@ -106,20 +106,21 @@
     <img class="corazon corazon3" src="./corazon.png" alt="❤️">
     <img class="corazon corazon4" src="./corazon.png" alt="❤️">
 
-    <!-- Imágenes laterales -->
-    <img class="imagen-lateral imagen-izquierda" src="./pareja1.png" alt="Tu imagen">
-    <img class="imagen-lateral imagen-derecha" src="./pareja2.png" alt="Imagen de tu pareja">
+    <!-- Imágenes laterales más centradas -->
+    <img class="imagen-lateral imagen-izquierda" src="./image1.jpg" alt="Tu imagen">
+    <img class="imagen-lateral imagen-derecha" src="./image2.jpg" alt="Imagen de tu pareja">
 
     <script>
         function respuesta(opcion) {
             if (opcion === 'no') {
                 const respuestas = [
-                    "¿En serio?", "¿Estás segura?", "Intenta de nuevo",
-                    "Piénsalo bien", "Respuesta incorrecta"
+                    "¿En serio? 🤨", "¿Estás segura? 🤐", "Intenta de nuevo 😉",
+                    "Piénsalo bieeen 🙃", "Respuesta incorrecta 😮", "Yo sé que siii... 😝"
+                    "Uhmmm... 😶"
                 ];
                 document.getElementById("respuesta-no").innerText = respuestas[Math.floor(Math.random() * respuestas.length)];
             } else {
-                document.getElementById("mensaje").innerText = "Yo también te amo, princesa <3";
+                document.getElementById("mensaje").innerText = "Yo también te amo 💘, mi princesa 👑💞";
                 document.getElementById("imagen").src = "./open_letter.png";
                 document.getElementById("respuesta-no").style.display = 'none';
                 document.querySelectorAll(".boton").forEach(boton => boton.remove());
