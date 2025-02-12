@@ -32,8 +32,7 @@
         }
         .botones {
             display: flex;
-            justify-content: center;
-            gap: 100px;
+            gap: 80px;
             margin-top: 20px;
         }
         .boton {
@@ -44,7 +43,6 @@
             border: none;
             font-weight: bold;
             transition: transform 0.3s ease;
-            z-index: 10;
         }
         .boton-si {
             background-color: #ff4081;
@@ -59,13 +57,12 @@
             transform: scale(1.1);
         }
 
-        /* Corazones en las esquinas */
+        /* Corazones en las esquinas más centrados */
         .corazon {
-            position: fixed;
+            position: absolute;
             width: 50px;
             height: auto;
             animation: mover 3s infinite alternate ease-in-out;
-            z-index: 1;
         }
         .corazon1 { top: 20px; left: 20px; }
         .corazon2 { top: 20px; right: 20px; }
@@ -80,14 +77,13 @@
         /* Imágenes laterales (visibles solo al presionar "Sí") */
         .imagen-lateral {
             position: absolute;
-            width: 300px;
+            width: 240px;
             height: auto;
             display: none;
             animation: sacudir 0.8s infinite alternate ease-in-out;
-            z-index: 2;
         }
-        .imagen-izquierda { left: 10%; top: 50%; transform: translateY(-50%); }
-        .imagen-derecha { right: 10%; top: 50%; transform: translateY(-50%); }
+        .imagen-izquierda { left: 5%; top: 50%; transform: translateY(-50%); }
+        .imagen-derecha { right: 5%; top: 50%; transform: translateY(-50%); }
 
         @keyframes sacudir {
             0% { transform: translateY(-2px); }
@@ -134,4 +130,5 @@
     </script>
 </body>
 </html>
+
 
