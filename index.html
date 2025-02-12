@@ -14,56 +14,73 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #fce4ec;
+            background-color: #fde4ec;
             position: relative;
         }
         #mensaje {
-            font-size: 28px;
-            font-weight: bold;
+            font-size: 24px;
             margin-bottom: 20px;
-            text-align: center;
-        }
-        #respuesta-no {
-            font-size: 20px;
-            margin-top: 10px;
-            text-align: justify;
-            max-width: 80%;
         }
         .botones {
             display: flex;
-            gap: 80px;
+            gap: 100px;
             margin-top: 20px;
             position: relative;
         }
         .boton {
             font-size: 20px;
-            padding: 12px 24px;
+            padding: 10px 20px;
             cursor: pointer;
-            border-radius: 20px;
-            border: none;
-            font-weight: bold;
+            position: relative;
+            transition: all 0.3s ease;
         }
         .boton-si {
-            background-color: #ff4081;
+            background-color: #ff5a8a;
             color: white;
-            position: relative;
+            border: none;
+            border-radius: 20px;
+            padding: 12px 24px;
+        }
+        .boton-si:hover {
+            transform: scale(1.1);
+        }
+        .boton-si:active {
+            background-color: #ff2a6d;
         }
         .boton-no {
             background-color: white;
-            color: #ff4081;
-            border: 2px solid #ff4081;
+            color: #ff5a8a;
+            border: 2px solid #ff5a8a;
+            border-radius: 20px;
+            padding: 12px 24px;
+        }
+        .boton-no:hover {
+            animation: shake 0.3s ease-in-out;
+        }
+        .boton-no:active {
+            opacity: 0.7;
+        }
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
         }
         .corazones-si {
             position: absolute;
             width: 30px;
             height: auto;
             display: none;
+            animation: float 1.5s infinite alternate ease-in-out;
         }
-        .boton-si:hover ~ .corazon-top { display: block; top: -30px; left: 50%; transform: translateX(-50%); }
+        .boton-si:hover ~ .corazon-top { display: block; top: -40px; left: 50%; transform: translateX(-50%); }
         .boton-si:hover ~ .corazon-left { display: block; top: 10px; left: -40px; }
         .boton-si:hover ~ .corazon-right { display: block; top: 10px; right: -40px; }
-        
-        /* Corazones en las esquinas */
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-5px); }
+        }
         .corazon {
             position: absolute;
             width: 50px;
@@ -73,24 +90,15 @@
         .corazon2 { top: 10px; right: 10px; transform: rotate(15deg); }
         .corazon3 { bottom: 10px; left: 10px; transform: rotate(10deg); }
         .corazon4 { bottom: 10px; right: 10px; transform: rotate(-10deg); }
-
-        /* Imágenes laterales */
-        .imagen-lateral {
-            position: absolute;
-            width: 120px;
-            height: auto;
-            display: none;
+        #respuesta {
+            margin-top: 10px;
+            font-size: 20px;
         }
-        .imagen-izquierda { left: 15%; top: 50%; transform: translateY(-50%); }
-        .imagen-derecha { right: 15%; top: 50%; transform: translateY(-50%); }
     </style>
 </head>
 <body>
     <h1 id="mensaje">¿Me amas?</h1>
-    <p id="respuesta-no"></p>
-    <img class="imagen-lateral imagen-izquierda" src="./image1.png" alt="Decoración izquierda">
-    <img id="imagen" src="./image.png" alt="Carta Cerrada">
-    <img class="imagen-lateral imagen-derecha" src="./image2.png" alt="Decoración derecha">
+    <p id="respuesta"></p>
     <br>
     <div class="botones">
         <button class="boton boton-no" onclick="respuesta('no')">No</button>
@@ -99,27 +107,26 @@
         <img class="corazones-si corazon-left" src="./corazon.png" alt="❤️">
         <img class="corazones-si corazon-right" src="./corazon.png" alt="❤️">
     </div>
-
-    <!-- Corazones decorativos en las esquinas -->
     <img class="corazon corazon1" src="./corazon.png" alt="❤️">
     <img class="corazon corazon2" src="./corazon.png" alt="❤️">
     <img class="corazon corazon3" src="./corazon.png" alt="❤️">
     <img class="corazon corazon4" src="./corazon.png" alt="❤️">
-
     <script>
         function respuesta(opcion) {
             if (opcion === 'no') {
                 const respuestas = [
                     "¿En serio?", "¿Estás segura?", "Intenta de nuevo",
-                    "Piénsalo bien", "Respuesta incorrecta"
+                    "Piénsalo bien", "Respuesta incorrecta", "Yo sé que siii...",
+                    "Uhmmm..."
                 ];
-                document.getElementById("respuesta-no").innerText = respuestas[Math.floor(Math.random() * respuestas.length)];
+                document.getElementById("respuesta").innerText = respuestas[Math.floor(Math.random() * respuestas.length)];
             } else {
                 document.getElementById("mensaje").innerText = "Yo también te amo, princesa <3";
-                document.getElementById("imagen").src = "./open_letter.png";
+                document.getElementById("respuesta").innerText = "";
                 document.querySelectorAll(".boton").forEach(boton => boton.remove());
                 document.querySelectorAll(".corazones-si").forEach(corazon => corazon.remove());
-                document.querySelectorAll(".imagen-lateral").forEach(img => img.style.display = 'block');
+                document.body.insertAdjacentHTML('beforeend', '<img src="image1.png" style="position: absolute; left: 15%; top: 50%; transform: translateY(-50%); width: 150px;">');
+                document.body.insertAdjacentHTML('beforeend', '<img src="image2.png" style="position: absolute; right: 15%; top: 50%; transform: translateY(-50%); width: 150px;">');
             }
         }
     </script>
