@@ -130,12 +130,13 @@
         function respuesta(opcion) {
             if (opcion === 'no') {
                 const respuestas = [
-                    "¿En serio?", "¿Estás segura?", "Intenta de nuevo",
-                    "Piénsalo bien", "Respuesta incorrecta"
+                    "¿En serio? 😐", "¿Estás segura? 🤨", "Intenta de nuevo 🫡",
+                    "Piénsalo bien 😉", "Respuesta incorrecta 😝", "Yo sé que siii... 😊",
+                    "Uhmmmm... 😶"
                 ];
                 document.getElementById("mensaje").innerText = respuestas[Math.floor(Math.random() * respuestas.length)];
             } else {
-                document.getElementById("mensaje").innerText = "Yo también te amo, princesa <3";
+                document.getElementById("mensaje").innerText = "Yo también te amo 💘, princesa 👑💞";
                 document.getElementById("imagen").src = "./open_letter.png"; // Imagen de carta abierta
                 document.getElementById("imagen").style.transform = "scale(1.1)";
                 document.querySelectorAll(".boton").forEach(boton => boton.remove());
