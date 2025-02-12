@@ -34,7 +34,7 @@
             display: flex;
             gap: 100px;
             margin-top: 20px;
-            z-index: 10;
+            z-index: 2;
         }
         .boton {
             font-size: 20px;
@@ -58,35 +58,35 @@
             transform: scale(1.1);
         }
 
-        /* Corazones en las esquinas más centrados */
+        /* Corazones en las esquinas */
         .corazon {
-            position: absolute;
+            position: fixed;
             width: 50px;
             height: auto;
             animation: mover 3s infinite alternate ease-in-out;
             z-index: 1;
         }
-        .corazon1 { top: 30px; left: 30px; }
-        .corazon2 { top: 30px; right: 30px; }
-        .corazon3 { bottom: 30px; left: 30px; }
-        .corazon4 { bottom: 30px; right: 30px; }
+        .corazon1 { top: 20px; left: 20px; }
+        .corazon2 { top: 20px; right: 20px; }
+        .corazon3 { bottom: 20px; left: 20px; }
+        .corazon4 { bottom: 20px; right: 20px; }
 
         @keyframes mover {
             0% { transform: translateX(0); }
             100% { transform: translateX(10px); }
         }
 
-        /* Imágenes laterales más centradas (visibles solo al presionar "Sí") */
+        /* Imágenes laterales (visibles solo al presionar "Sí") */
         .imagen-lateral {
             position: absolute;
-            width: 240px;
+            width: 300px;
             height: auto;
             display: none;
             animation: sacudir 0.8s infinite alternate ease-in-out;
-            z-index: 5;
+            z-index: 2;
         }
-        .imagen-izquierda { left: 20%; top: 50%; transform: translate(-50%, -50%); }
-        .imagen-derecha { right: 20%; top: 50%; transform: translate(50%, -50%); }
+        .imagen-izquierda { left: 15%; top: 50%; transform: translate(-50%, -50%); }
+        .imagen-derecha { right: 15%; top: 50%; transform: translate(50%, -50%); }
 
         @keyframes sacudir {
             0% { transform: translateY(-2px); }
@@ -109,7 +109,7 @@
     <img class="corazon corazon3" src="./corazon.png" alt="❤️">
     <img class="corazon corazon4" src="./corazon.png" alt="❤️">
 
-    <!-- Imágenes laterales más centradas -->
+    <!-- Imágenes laterales -->
     <img class="imagen-lateral imagen-izquierda" src="./image1.jpg" alt="Tu imagen">
     <img class="imagen-lateral imagen-derecha" src="./image2.jpg" alt="Imagen de tu pareja">
 
