@@ -28,10 +28,11 @@
             margin-top: 10px;
             text-align: justify;
             max-width: 80%;
+            transition: opacity 0.5s ease;
         }
         .botones {
             display: flex;
-            gap: 50px;
+            gap: 80px;
             margin-top: 20px;
         }
         .boton {
@@ -41,6 +42,7 @@
             border-radius: 20px;
             border: none;
             font-weight: bold;
+            transition: transform 0.3s ease;
         }
         .boton-si {
             background-color: #ff4081;
@@ -51,34 +53,37 @@
             color: #ff4081;
             border: 2px solid #ff4081;
         }
+        .boton:hover {
+            transform: scale(1.1);
+        }
 
-        /* Corazones en las esquinas con movimiento suave */
+        /* Corazones en las esquinas más centrados */
         .corazon {
             position: absolute;
             width: 50px;
             height: auto;
             animation: mover 3s infinite alternate ease-in-out;
         }
-        .corazon1 { top: 10px; left: 10px; }
-        .corazon2 { top: 10px; right: 10px; }
-        .corazon3 { bottom: 10px; left: 10px; }
-        .corazon4 { bottom: 10px; right: 10px; }
+        .corazon1 { top: 20px; left: 20px; }
+        .corazon2 { top: 20px; right: 20px; }
+        .corazon3 { bottom: 20px; left: 20px; }
+        .corazon4 { bottom: 20px; right: 20px; }
 
         @keyframes mover {
             0% { transform: translateX(0); }
-            100% { transform: translateX(20px); }
+            100% { transform: translateX(10px); }
         }
 
-        /* Estilo para las imágenes */
+        /* Imágenes laterales (visibles solo al presionar "Sí") */
         .imagen-lateral {
             position: absolute;
-            width: 150px;
+            width: 240px;
             height: auto;
             display: none;
             animation: sacudir 0.8s infinite alternate ease-in-out;
         }
-        .imagen-izquierda { left: 10%; top: 50%; transform: translateY(-50%); }
-        .imagen-derecha { right: 10%; top: 50%; transform: translateY(-50%); }
+        .imagen-izquierda { left: 5%; top: 50%; transform: translateY(-50%); }
+        .imagen-derecha { right: 5%; top: 50%; transform: translateY(-50%); }
 
         @keyframes sacudir {
             0% { transform: translateY(-2px); }
@@ -102,8 +107,8 @@
     <img class="corazon corazon4" src="./corazon.png" alt="❤️">
 
     <!-- Imágenes laterales -->
-    <img class="imagen-lateral imagen-izquierda" src="./image1.jpg" alt="Tu imagen">
-    <img class="imagen-lateral imagen-derecha" src="./image2.jpg" alt="Imagen de tu pareja">
+    <img class="imagen-lateral imagen-izquierda" src="./pareja1.png" alt="Tu imagen">
+    <img class="imagen-lateral imagen-derecha" src="./pareja2.png" alt="Imagen de tu pareja">
 
     <script>
         function respuesta(opcion) {
@@ -116,6 +121,7 @@
             } else {
                 document.getElementById("mensaje").innerText = "Yo también te amo, princesa <3";
                 document.getElementById("imagen").src = "./open_letter.png";
+                document.getElementById("respuesta-no").style.display = 'none';
                 document.querySelectorAll(".boton").forEach(boton => boton.remove());
                 document.querySelectorAll(".imagen-lateral").forEach(img => img.style.display = 'block');
             }
