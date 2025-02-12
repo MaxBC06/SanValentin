@@ -4,64 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¿Me amas?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
             text-align: center;
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            background-color: #fce4ec;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            overflow: hidden;
             position: relative;
         }
         #mensaje {
-            font-size: 24px;
-            margin-bottom: 20px;
+            font-size: 28px;
+            font-weight: 600;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
         .botones {
             display: flex;
-            gap: 40px;
+            gap: 80px;
             margin-top: 20px;
-            position: relative;
+            align-items: center;
         }
         .boton {
             font-size: 20px;
-            padding: 10px 20px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 30px;
             cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .boton-si {
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            color: white;
+            box-shadow: 0px 4px 10px rgba(255, 117, 140, 0.5);
             position: relative;
         }
-        .corazones-si {
-            position: absolute;
-            width: 30px;
-            height: auto;
-            display: none;
+        .boton-si:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 6px 15px rgba(255, 117, 140, 0.7);
         }
-        .boton-si:hover ~ .corazon-top { display: block; top: -30px; left: 50%; transform: translateX(-50%); }
-        .boton-si:hover ~ .corazon-left { display: block; top: 10px; left: -30px; }
-        .boton-si:hover ~ .corazon-right { display: block; top: 10px; right: -30px; }
+        .boton-no {
+            background: white;
+            color: #ff758c;
+            border: 2px solid #ff758c;
+        }
+        .boton-no:hover {
+            background: #ff758c;
+            color: white;
+        }
         #imagen {
             width: 300px;
             height: auto;
+            transition: transform 0.5s ease;
         }
         .corazon {
             position: absolute;
             width: 50px;
-            height: auto;
+            opacity: 0.6;
+            animation: flotar 3s infinite alternate ease-in-out;
+            display: none;
         }
-        /* Posiciones de los corazones en las esquinas */
-        .corazon1 { top: 10px; left: 10px; transform: rotate(-15deg); }
-        .corazon2 { top: 10px; right: 10px; transform: rotate(15deg); }
-        .corazon3 { bottom: 10px; left: 10px; transform: rotate(10deg); }
-        .corazon4 { bottom: 10px; right: 10px; transform: rotate(-10deg); }
-        /* Imágenes agitadas */
-        .imagen-lateral {
+        @keyframes flotar {
+            0% { transform: translateY(0px) scale(1); }
+            100% { transform: translateY(-20px) scale(1.1); }
+        }
+        .corazon1 { top: 50%; left: 48%; }
+        .corazon2 { top: 40%; left: 55%; animation-delay: 1s; }
+        .corazon3 { top: 60%; left: 55%; animation-delay: 2s; }
+        .decoracion {
             position: absolute;
             width: 100px;
             height: auto;
             animation: agitar 1s infinite alternate;
+            display: none;
         }
         .imagen-izquierda { left: 15%; top: 50%; transform: translateY(-50%); }
         .imagen-derecha { right: 15%; top: 50%; transform: translateY(-50%); }
@@ -73,23 +95,21 @@
 </head>
 <body>
     <h1 id="mensaje">¿Me amas?</h1>
-    <img class="imagen-lateral imagen-izquierda" src="./imagen1.png" alt="Decoración">
     <img id="imagen" src="./image.png" alt="Carta Cerrada">
-    <img class="imagen-lateral imagen-derecha" src="./imagen2.png" alt="Decoración">
     <br>
     <div class="botones">
-        <button class="boton" onclick="respuesta('no')">No</button>
+        <button class="boton boton-no" onclick="respuesta('no')">No</button>
         <button class="boton boton-si" onclick="respuesta('si')">Sí</button>
-        <img class="corazones-si corazon-top" src="./corazon.png" alt="❤️">
-        <img class="corazones-si corazon-left" src="./corazon.png" alt="❤️">
-        <img class="corazones-si corazon-right" src="./corazon.png" alt="❤️">
     </div>
-
-    <!-- Corazones decorativos en las esquinas -->
+    
+    <!-- Corazones decorativos alrededor del botón Sí -->
     <img class="corazon corazon1" src="./corazon.png" alt="❤️">
     <img class="corazon corazon2" src="./corazon.png" alt="❤️">
     <img class="corazon corazon3" src="./corazon.png" alt="❤️">
-    <img class="corazon corazon4" src="./corazon.png" alt="❤️">
+    
+    <!-- Decoraciones ocultas hasta presionar Sí -->
+    <img class="decoracion imagen-izquierda" src="./imagen1.png" alt="Decoración">
+    <img class="decoracion imagen-derecha" src="./imagen2.png" alt="Decoración">
 
     <script>
         function respuesta(opcion) {
@@ -102,8 +122,10 @@
             } else {
                 document.getElementById("mensaje").innerText = "Yo también te amo, princesa <3";
                 document.getElementById("imagen").src = "./open_letter.png"; // Imagen de carta abierta
+                document.getElementById("imagen").style.transform = "scale(1.1)";
                 document.querySelectorAll(".boton").forEach(boton => boton.remove());
-                document.querySelectorAll(".corazones-si").forEach(corazon => corazon.remove());
+                document.querySelectorAll(".corazon").forEach(corazon => corazon.style.display = "block");
+                document.querySelectorAll(".decoracion").forEach(decoracion => decoracion.style.display = "block");
             }
         }
     </script>
