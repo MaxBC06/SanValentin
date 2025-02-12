@@ -65,7 +65,6 @@
             width: 50px;
             height: auto;
             animation: mover 3s infinite alternate ease-in-out;
-            z-index: 1;
         }
         .corazon1 { top: 20px; left: 20px; }
         .corazon2 { top: 20px; right: 20px; }
@@ -76,12 +75,34 @@
             0% { transform: translateX(0); }
             100% { transform: translateX(10px); }
         }
+
+        /* Imágenes laterales */
+        .imagen-lateral {
+            position: fixed;
+            width: 120px;
+            height: auto;
+            top: 50%;
+            transform: translateY(-50%);
+            display: none;
+        }
+        .imagen-izquierda { left: 5%; }
+        .imagen-derecha { right: 5%; }
+        .imagen-lateral.visible {
+            display: block;
+            animation: sacudir 1.5s infinite alternate ease-in-out;
+        }
+
+        @keyframes sacudir {
+            0% { transform: translateY(-50%) rotate(-2deg); }
+            100% { transform: translateY(-50%) rotate(2deg); }
+        }
     </style>
 </head>
 <body>
     <h1 id="mensaje">¿Me amas?</h1>
     <p id="respuesta-no"></p>
     <img id="imagen" src="./image.png" alt="Carta Cerrada">
+    <br>
     <div class="botones">
         <button class="boton boton-no" onclick="respuesta('no')">No</button>
         <button class="boton boton-si" onclick="respuesta('si')">Sí</button>
@@ -92,6 +113,10 @@
     <img class="corazon corazon2" src="./corazon.png" alt="❤️">
     <img class="corazon corazon3" src="./corazon.png" alt="❤️">
     <img class="corazon corazon4" src="./corazon.png" alt="❤️">
+
+    <!-- Imágenes laterales -->
+    <img class="imagen-lateral imagen-izquierda" src="./pareja1.png" alt="Pareja 1">
+    <img class="imagen-lateral imagen-derecha" src="./pareja2.png" alt="Pareja 2">
 
     <script>
         function respuesta(opcion) {
@@ -106,6 +131,10 @@
                 document.getElementById("imagen").src = "./open_letter.png";
                 document.getElementById("respuesta-no").style.display = 'none';
                 document.querySelectorAll(".boton").forEach(boton => boton.remove());
+                
+                // Mostrar imágenes laterales con animación
+                document.querySelector('.imagen-izquierda').classList.add('visible');
+                document.querySelector('.imagen-derecha').classList.add('visible');
             }
         }
     </script>
