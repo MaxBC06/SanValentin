@@ -32,9 +32,9 @@
         }
         .botones {
             display: flex;
+            justify-content: center;
             gap: 100px;
             margin-top: 20px;
-            z-index: 2;
         }
         .boton {
             font-size: 20px;
@@ -44,6 +44,7 @@
             border: none;
             font-weight: bold;
             transition: transform 0.3s ease;
+            z-index: 10;
         }
         .boton-si {
             background-color: #ff4081;
@@ -85,8 +86,8 @@
             animation: sacudir 0.8s infinite alternate ease-in-out;
             z-index: 2;
         }
-        .imagen-izquierda { left: 15%; top: 50%; transform: translate(-50%, -50%); }
-        .imagen-derecha { right: 15%; top: 50%; transform: translate(50%, -50%); }
+        .imagen-izquierda { left: 10%; top: 50%; transform: translateY(-50%); }
+        .imagen-derecha { right: 10%; top: 50%; transform: translateY(-50%); }
 
         @keyframes sacudir {
             0% { transform: translateY(-2px); }
@@ -133,3 +134,4 @@
     </script>
 </body>
 </html>
+
