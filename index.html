@@ -115,20 +115,19 @@
     <img class="corazon corazon4" src="./corazon.png" alt="❤️">
 
     <!-- Imágenes laterales -->
-    <img class="imagen-lateral imagen-izquierda" src="./image1.jpg" alt="Pareja 1">
-    <img class="imagen-lateral imagen-derecha" src="./image2.jpg" alt="Pareja 2">
+    <img class="imagen-lateral imagen-izquierda" src="./pareja1.png" alt="Pareja 1">
+    <img class="imagen-lateral imagen-derecha" src="./pareja2.png" alt="Pareja 2">
 
     <script>
         function respuesta(opcion) {
             if (opcion === 'no') {
                 const respuestas = [
-                    "¿En serio? 🤨", "¿Estás segura? 🤐", "Intenta de nuevo 😉",
-                    "Piénsalo bieeen 🙃", "Respuesta incorrecta 😮", "Yo sé que siii... 😝"
-                    "Uhmmm... 😶"
+                    "¿En serio?", "¿Estás segura?", "Intenta de nuevo",
+                    "Piénsalo bien", "Respuesta incorrecta"
                 ];
                 document.getElementById("respuesta-no").innerText = respuestas[Math.floor(Math.random() * respuestas.length)];
             } else {
-                document.getElementById("mensaje").innerText = "Yo también te amo 💘, mi princesa 👑💞";
+                document.getElementById("mensaje").innerText = "Yo también te amo, princesa <3";
                 document.getElementById("imagen").src = "./open_letter.png";
                 document.getElementById("respuesta-no").style.display = 'none';
                 document.querySelectorAll(".boton").forEach(boton => boton.remove());
