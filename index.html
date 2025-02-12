@@ -32,8 +32,9 @@
         }
         .botones {
             display: flex;
-            gap: 80px;
+            gap: 100px;
             margin-top: 20px;
+            z-index: 10;
         }
         .boton {
             font-size: 20px;
@@ -63,6 +64,7 @@
             width: 50px;
             height: auto;
             animation: mover 3s infinite alternate ease-in-out;
+            z-index: 1;
         }
         .corazon1 { top: 30px; left: 30px; }
         .corazon2 { top: 30px; right: 30px; }
@@ -81,9 +83,10 @@
             height: auto;
             display: none;
             animation: sacudir 0.8s infinite alternate ease-in-out;
+            z-index: 5;
         }
-        .imagen-izquierda { left: 15%; top: 50%; transform: translate(-50%, -50%); }
-        .imagen-derecha { right: 15%; top: 50%; transform: translate(50%, -50%); }
+        .imagen-izquierda { left: 20%; top: 50%; transform: translate(-50%, -50%); }
+        .imagen-derecha { right: 20%; top: 50%; transform: translate(50%, -50%); }
 
         @keyframes sacudir {
             0% { transform: translateY(-2px); }
