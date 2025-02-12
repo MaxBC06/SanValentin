@@ -25,12 +25,23 @@
             display: flex;
             gap: 40px;
             margin-top: 20px;
+            position: relative;
         }
         .boton {
             font-size: 20px;
             padding: 10px 20px;
             cursor: pointer;
+            position: relative;
         }
+        .corazones-si {
+            position: absolute;
+            width: 30px;
+            height: auto;
+            display: none;
+        }
+        .boton-si:hover ~ .corazon-top { display: block; top: -30px; left: 50%; transform: translateX(-50%); }
+        .boton-si:hover ~ .corazon-left { display: block; top: 10px; left: -30px; }
+        .boton-si:hover ~ .corazon-right { display: block; top: 10px; right: -30px; }
         #imagen {
             width: 300px;
             height: auto;
@@ -45,24 +56,33 @@
         .corazon2 { top: 10px; right: 10px; transform: rotate(15deg); }
         .corazon3 { bottom: 10px; left: 10px; transform: rotate(10deg); }
         .corazon4 { bottom: 10px; right: 10px; transform: rotate(-10deg); }
-        /* Corazones al lado de la respuesta "Sí" */
-        .corazon-si {
-            width: 30px;
+        /* Imágenes agitadas */
+        .imagen-lateral {
+            position: absolute;
+            width: 100px;
             height: auto;
-            margin-left: 5px;
+            animation: agitar 1s infinite alternate;
+        }
+        .imagen-izquierda { left: 15%; top: 50%; transform: translateY(-50%); }
+        .imagen-derecha { right: 15%; top: 50%; transform: translateY(-50%); }
+        @keyframes agitar {
+            0% { transform: translateY(-50%) rotate(-5deg); }
+            100% { transform: translateY(-50%) rotate(5deg); }
         }
     </style>
 </head>
 <body>
     <h1 id="mensaje">¿Me amas?</h1>
+    <img class="imagen-lateral imagen-izquierda" src="./imagen1.png" alt="Decoración">
     <img id="imagen" src="./image.png" alt="Carta Cerrada">
+    <img class="imagen-lateral imagen-derecha" src="./imagen2.png" alt="Decoración">
     <br>
     <div class="botones">
         <button class="boton" onclick="respuesta('no')">No</button>
-        <button class="boton" onclick="respuesta('si')">Sí</button>
-        <img class="corazon-si" src="./corazon.png" alt="❤️">
-        <img class="corazon-si" src="./corazon.png" alt="❤️">
-        <img class="corazon-si" src="./corazon.png" alt="❤️">
+        <button class="boton boton-si" onclick="respuesta('si')">Sí</button>
+        <img class="corazones-si corazon-top" src="./corazon.png" alt="❤️">
+        <img class="corazones-si corazon-left" src="./corazon.png" alt="❤️">
+        <img class="corazones-si corazon-right" src="./corazon.png" alt="❤️">
     </div>
 
     <!-- Corazones decorativos en las esquinas -->
@@ -83,7 +103,7 @@
                 document.getElementById("mensaje").innerText = "Yo también te amo, princesa <3";
                 document.getElementById("imagen").src = "./open_letter.png"; // Imagen de carta abierta
                 document.querySelectorAll(".boton").forEach(boton => boton.remove());
-                document.querySelectorAll(".corazon-si").forEach(corazon => corazon.remove());
+                document.querySelectorAll(".corazones-si").forEach(corazon => corazon.remove());
             }
         }
     </script>
