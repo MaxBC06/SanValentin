@@ -4,143 +4,122 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>¿Me amas?</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         body {
             text-align: center;
-            font-family: 'Poppins', sans-serif;
+            font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-            overflow: hidden;
+            background-color: #fce4ec;
             position: relative;
         }
         #mensaje {
             font-size: 28px;
-            font-weight: 600;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        #respuesta-no {
+            font-size: 20px;
+            margin-top: 10px;
+            text-align: justify;
+            max-width: 80%;
         }
         .botones {
             display: flex;
             gap: 80px;
             margin-top: 20px;
-            align-items: center;
             position: relative;
         }
         .boton {
             font-size: 20px;
             padding: 12px 24px;
-            border: none;
-            border-radius: 30px;
             cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            border-radius: 20px;
+            border: none;
+            font-weight: bold;
         }
         .boton-si {
-            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            background-color: #ff4081;
             color: white;
-            box-shadow: 0px 4px 10px rgba(255, 117, 140, 0.5);
             position: relative;
         }
-        .boton-si:hover {
-            transform: scale(1.1);
-            box-shadow: 0px 6px 15px rgba(255, 117, 140, 0.7);
-        }
         .boton-no {
-            background: white;
-            color: #ff758c;
-            border: 2px solid #ff758c;
+            background-color: white;
+            color: #ff4081;
+            border: 2px solid #ff4081;
         }
-        .boton-no:hover {
-            background: #ff758c;
-            color: white;
-        }
-        #imagen {
-            width: 300px;
+        .corazones-si {
+            position: absolute;
+            width: 30px;
             height: auto;
-            transition: transform 0.5s ease;
+            display: none;
         }
+        .boton-si:hover ~ .corazon-top { display: block; top: -30px; left: 50%; transform: translateX(-50%); }
+        .boton-si:hover ~ .corazon-left { display: block; top: 10px; left: -40px; }
+        .boton-si:hover ~ .corazon-right { display: block; top: 10px; right: -40px; }
+        
+        /* Corazones en las esquinas */
         .corazon {
             position: absolute;
             width: 50px;
-            opacity: 0.6;
-            animation: flotar 3s infinite alternate ease-in-out;
-            display: none;
-        }
-        @keyframes flotar {
-            0% { transform: translateY(0px) scale(1); }
-            100% { transform: translateY(-20px) scale(1.1); }
-        }
-        .corazon1 { top: 10px; left: 10px; }
-        .corazon2 { top: 10px; right: 10px; }
-        .corazon3 { bottom: 10px; left: 10px; }
-        .corazon4 { bottom: 10px; right: 10px; }
-        .corazon-si {
-            display: none;
-            position: absolute;
-            width: 30px;
-        }
-        .boton-si:hover ~ .corazon-si { display: block; }
-        .corazon-top { top: -30px; left: 50%; transform: translateX(-50%); }
-        .corazon-left { top: 10px; left: -40px; }
-        .corazon-right { top: 10px; right: -40px; }
-        .decoracion {
-            position: absolute;
-            width: 100px;
             height: auto;
-            animation: agitar 1s infinite alternate;
+        }
+        .corazon1 { top: 10px; left: 10px; transform: rotate(-15deg); }
+        .corazon2 { top: 10px; right: 10px; transform: rotate(15deg); }
+        .corazon3 { bottom: 10px; left: 10px; transform: rotate(10deg); }
+        .corazon4 { bottom: 10px; right: 10px; transform: rotate(-10deg); }
+
+        /* Imágenes laterales */
+        .imagen-lateral {
+            position: absolute;
+            width: 120px;
+            height: auto;
             display: none;
         }
         .imagen-izquierda { left: 15%; top: 50%; transform: translateY(-50%); }
         .imagen-derecha { right: 15%; top: 50%; transform: translateY(-50%); }
-        @keyframes agitar {
-            0% { transform: translateY(-50%) rotate(-5deg); }
-            100% { transform: translateY(-50%) rotate(5deg); }
-        }
     </style>
 </head>
 <body>
     <h1 id="mensaje">¿Me amas?</h1>
+    <p id="respuesta-no"></p>
+    <img class="imagen-lateral imagen-izquierda" src="./image1.png" alt="Decoración izquierda">
     <img id="imagen" src="./image.png" alt="Carta Cerrada">
+    <img class="imagen-lateral imagen-derecha" src="./image2.png" alt="Decoración derecha">
     <br>
     <div class="botones">
         <button class="boton boton-no" onclick="respuesta('no')">No</button>
         <button class="boton boton-si" onclick="respuesta('si')">Sí</button>
-        <img class="corazon-si corazon-top" src="./corazon.png" alt="❤️">
-        <img class="corazon-si corazon-left" src="./corazon.png" alt="❤️">
-        <img class="corazon-si corazon-right" src="./corazon.png" alt="❤️">
+        <img class="corazones-si corazon-top" src="./corazon.png" alt="❤️">
+        <img class="corazones-si corazon-left" src="./corazon.png" alt="❤️">
+        <img class="corazones-si corazon-right" src="./corazon.png" alt="❤️">
     </div>
-    
+
     <!-- Corazones decorativos en las esquinas -->
     <img class="corazon corazon1" src="./corazon.png" alt="❤️">
     <img class="corazon corazon2" src="./corazon.png" alt="❤️">
     <img class="corazon corazon3" src="./corazon.png" alt="❤️">
     <img class="corazon corazon4" src="./corazon.png" alt="❤️">
-    
-    <!-- Decoraciones ocultas hasta presionar Sí -->
-    <img class="decoracion imagen-izquierda" src="./imagen1.png" alt="Decoración">
-    <img class="decoracion imagen-derecha" src="./imagen2.png" alt="Decoración">
 
     <script>
         function respuesta(opcion) {
             if (opcion === 'no') {
                 const respuestas = [
-                    "¿En serio? 😐", "¿Estás segura? 🤨", "Intenta de nuevo 🫡",
-                    "Piénsalo bien 😉", "Respuesta incorrecta 😝", "Yo sé que siii... 😊",
-                    "Uhmmmm... 😶"
+                    "¿En serio?", "¿Estás segura?", "Intenta de nuevo",
+                    "Piénsalo bien", "Respuesta incorrecta"
                 ];
-                document.getElementById("mensaje").innerText = respuestas[Math.floor(Math.random() * respuestas.length)];
+                document.getElementById("respuesta-no").innerText = respuestas[Math.floor(Math.random() * respuestas.length)];
             } else {
-                document.getElementById("mensaje").innerText = "Yo también te amo 💘, princesa 👑💞";
-                document.getElementById("imagen").src = "./open_letter.png"; // Imagen de carta abierta
-                document.getElementById("imagen").style.transform = "scale(1.1)";
+                document.getElementById("mensaje").innerText = "Yo también te amo, princesa <3";
+                document.getElementById("imagen").src = "./open_letter.png";
                 document.querySelectorAll(".boton").forEach(boton => boton.remove());
-                document.querySelectorAll(".decoracion").forEach(decoracion => decoracion.style.display = "block");
+                document.querySelectorAll(".corazones-si").forEach(corazon => corazon.remove());
+                document.querySelectorAll(".imagen-lateral").forEach(img => img.style.display = 'block');
             }
         }
     </script>
