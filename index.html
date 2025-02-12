@@ -15,7 +15,6 @@
             height: 100vh;
             margin: 0;
             background-color: #fce4ec;
-            position: relative;
             overflow: hidden;
         }
         #mensaje {
@@ -50,7 +49,7 @@
             background-color: white;
             color: #ff4081;
             border: 2px solid #ff4081;
-            position: absolute;
+            position: relative;
         }
 
         /* Corazones en las esquinas con movimiento */
@@ -95,18 +94,22 @@
                 ];
                 document.getElementById("respuesta-no").innerText = respuestas[Math.floor(Math.random() * respuestas.length)];
                 
-                // Mover el botón "No" a una posición aleatoria
+                // Mover el botón "No" a una nueva posición aleatoria
                 const botonNo = document.getElementById("botonNo");
-                const randomX = Math.random() * (window.innerWidth - botonNo.offsetWidth);
-                const randomY = Math.random() * (window.innerHeight - botonNo.offsetHeight);
+                const maxX = window.innerWidth - botonNo.offsetWidth - 20;
+                const maxY = window.innerHeight - botonNo.offsetHeight - 20;
+                const randomX = Math.random() * maxX;
+                const randomY = Math.random() * maxY;
                 botonNo.style.transform = `translate(${randomX}px, ${randomY}px)`;
             } else {
                 document.getElementById("mensaje").innerText = "Yo también te amo, princesa <3";
                 document.getElementById("imagen").src = "./open_letter.png";
                 document.querySelectorAll(".boton").forEach(boton => boton.remove());
                 document.querySelectorAll(".corazon").forEach(corazon => corazon.remove());
+                document.getElementById("respuesta-no").innerText = "";
             }
         }
     </script>
 </body>
 </html>
+
